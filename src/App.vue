@@ -10,4 +10,8 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/main.scss';
+h1 {
+  display: block;
+  text-align: center;
+}
 </style>
