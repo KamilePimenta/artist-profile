@@ -1,8 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import store from './store/index.js';
+import router from './routes';
+import screenMixin from './assets/mixins/isMobileScreen';
+import '@/assets/scss/main.scss';
 
-const appInstance = createApp(App);
 
-appInstance.use(store);
+const appInstance = createApp({
+  extends: App,
+});
+
+appInstance.mixin(screenMixin);
+appInstance.use(router);
 appInstance.mount('#app');
