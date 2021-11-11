@@ -1,12 +1,10 @@
 * {
-  font-family: 'Roboto', sans-serif;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  color: $text;
-  line-height: 1.4;
-}
-
-body {
   margin: 0;
   padding: 0;
+  font: 16px 'Assistant', Arial, Helvetica, sans-serif;
+  line-height: 1.4em;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  border: 0;
+  outline: 0;
 }
