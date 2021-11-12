@@ -1,10 +1,39 @@
 * {
   margin: 0;
   padding: 0;
-  font: 16px 'Assistant', Arial, Helvetica, sans-serif;
-  line-height: 1.4em;
   box-sizing: border-box;
   scroll-behavior: smooth;
   border: 0;
   outline: 0;
+}
+
+body {
+  color: $greySix;
+  font: 16px 'Assistant', Arial, Helvetica, sans-serif;  
+  line-height: 1.4em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cairo', Arial, Helvetica, sans-serif;  
+}
+
+h1 {
+  color: $primaryColor;
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
