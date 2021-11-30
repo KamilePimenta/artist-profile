@@ -1,13 +1,15 @@
 <template>
-  <ul :class="`list programs qtd-${quantity}`">
-    <li class="item" v-for="program in programs" :key="program.id">
-      <img :src="require(`@/assets/img/${program.image}`)"/>
-      <div class="info">
-        <span class="name">{{ program.name }}</span>
-        <span class="year">{{ program.year }}</span>
-      </div>
-    </li>
-  </ul>
+  <div class="slider no-scrollbar">
+    <ul :class="`list programs qtd-${quantity}`">
+      <li class="item" v-for="program in programs" :key="program.id">
+        <img :src="require(`@/assets/img/${program.image}`)"/>
+        <div class="info">
+          <span class="name">{{ program.name }}</span>
+          <span class="year">{{ program.year }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 <script>
 import programs from '@/data/programs.js';

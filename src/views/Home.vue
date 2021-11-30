@@ -1,5 +1,5 @@
 <template>
-  <main id="home" :class="isMobileScreen">
+  <main id="home" :class="`no-scrollbar ${isMobileScreen}`">
     <div :class="`principal container ${ableToChange ? ' scrolled' : ''}`">
       <div :class="`profile ${isMobileScreen}`">
         <span class="image">
@@ -17,8 +17,13 @@
       </div>
       <img class="scroll" src="@/assets/img/mouse-scrolling.gif" alt="Mouse Scrolling"/>
     </div>
-    <div :class="`informations ${ableToChange ? ' scrolled' : ''}`">
+    <div :class="`informations ${ableToChange ? ' scrolled' : ' no-scrolled'}`">
       <Splide :options="splideOptions">
+        <SplideSlide>
+          <div class="section container">
+            <p class="description">Cantora, atriz, compositora e apresentadora estadunidense. Em oito anos de carreira solo, venci dois Grammy Awards (Sweetener e Rain On Me). Não sou ariana, e nem grande.</p>
+          </div>
+        </SplideSlide>
         <SplideSlide>
           <div class="section container">
             <h4>Músicas em destaque</h4>
@@ -39,6 +44,12 @@
         </SplideSlide>
       </Splide>
     </div>
+    <Player
+      :class="`${isMobileScreen} ${ableToChange ? ' scrolled' : ''}`"
+      :title="'Luis Fonsi - Despacito'"
+      file="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-61905/zapsplat_multimedia_alert_chime_short_musical_notification_cute_child_like_001_64918.mp3?_=1"
+      :time="'00:03'"
+    />
   </main>
 </template>
 <script>
@@ -47,6 +58,7 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import Albuns from '../components/Albuns.vue';
 import Musics from '../components/Musics.vue';
 import Programs from '../components/Programs.vue';
+import Player from '../components/Player.vue';
 export default {
   name: 'Home',
   components: {
@@ -55,6 +67,7 @@ export default {
     Albuns,
     Musics,
     Programs,
+    Player,
   },
   data() {
     return {
@@ -68,6 +81,8 @@ export default {
         height: '120px',
         padding: '20% 0',
         type: 'loop',
+        rewind: false,
+        clones: 0,
       },
     };
   },
@@ -79,6 +94,7 @@ export default {
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  padding-bottom: 140px;
   background: rgb(45,31,47) no-repeat center top;
   background-size: cover;
 
@@ -99,6 +115,18 @@ export default {
     bottom: 0;
     background: rgba(45,31,47,.25);
     background: linear-gradient(0deg, rgba(45,31,47,0) 0%, rgba(45,31,47,1) 100%);
+  }
+  &::after {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: auto;
+    right: 0;
+    bottom: -140px;
+    height: 50vh;
+    background: rgba(45,31,47,.25);
+    background: linear-gradient(0deg, rgba(45,31,47,1) 0%, rgba(45,31,47,0) 100%);
+    z-index: 5;
   }
 
   .principal {
@@ -168,7 +196,7 @@ export default {
       }
     }
     .social {
-      margin-top: 40px;
+      margin-top: 20px;
       transition: all .8s ease;
       .link {
         display: inline-block;
@@ -185,7 +213,7 @@ export default {
     img.scroll {
       position: fixed;
       left: 50%;
-      bottom: 5vh;
+      bottom: 10vh;
       max-width: 70px;
       margin-left: -35px;
       transition: all .8s ease;
@@ -194,16 +222,23 @@ export default {
 
   .informations {
     position: relative;
-    max-height: 600px;
-    padding-top: 500px;
+    max-height: calc(40vh + 320px);
+    padding-top: 60vh;
+    padding-left: 15px;
     opacity: 0;
     overflow: hidden;
     z-index: 5;
-    transition: all 1s 1s ease-in;
+    transition: all .5s ease-in;
 
     &.scrolled {
-      padding-top: 300px;
+      transition-delay: .5s;
+      padding-top: 40vh;
       opacity: 1;
+    }
+
+    .description {
+      font-size: 18px;
+      line-height: 24px;
     }
 
     .section {

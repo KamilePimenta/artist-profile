@@ -18,11 +18,11 @@ export default {
         this.lastScrollPos = window.scrollY;
         this.lastDirecScroll = 'down';
       } 
-      // if (window.scrollY < this.lastScrollPos && this.lastDirecScroll === 'down') {
-      //   if (this.ableToChange) this.ableToChange = false;
-      //   this.lastScrollPos = window.scrollY;
-      //   this.lastDirecScroll = 'up';
-      // }
+      if (window.scrollY < this.lastScrollPos && this.lastDirecScroll === 'down') {
+        if (this.ableToChange) this.ableToChange = false;
+        this.lastScrollPos = window.scrollY;
+        this.lastDirecScroll = 'up';
+      }
     },
   },
 

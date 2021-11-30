@@ -9,63 +9,74 @@
   overflow: hidden;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 // Lists
-.list {
+.slider {
   position: relative;
   overflow-x: auto;
 
-  &.qtd-2 {
-    width: calc(2 * 220px);
-  }
-  &.qtd-3 {
-    width: calc(3 * 220px);
-  }
-  &.qtd-4 {
-    width: calc(4 * 220px);
-  }
-  &.qtd-5 {
-    width: calc(5 * 220px);
-  }
-  &.qtd-6 {
-    width: calc(6 * 220px);
-  }
-  &.qtd-7 {
-    width: calc(7 * 220px);
-  }
-  &.qtd-8 {
-    width: calc(8 * 220px);
-  }
-  &.qtd-9 {
-    width: calc(9 * 220px);
-  }
-  &.qtd-10 {
-    width: calc(10 * 220px);
-  }
-
-  .item {
-    display: flex;
-    align-items: center;
-    float: left;
-    min-width: 220px;
-
-    .info {
-      margin-left: 15px;
+  .list {  
+    &.qtd-2 {
+      width: calc(2 * 220px);
     }
-
-    span {
-      display: block;
+    &.qtd-3 {
+      width: calc(3 * 220px);
     }
-
-    .explicit {
-      display: inline-block;
-      width: 20px;
-      background-color: $greyFive;
-      color: $black;
-      font-size: 12px;
-      font-weight: bold;
-      line-height: 20px;
-      text-align: center;
-      border-radius: 3px;
+    &.qtd-4 {
+      width: calc(4 * 220px);
+    }
+    &.qtd-5 {
+      width: calc(5 * 220px);
+    }
+    &.qtd-6 {
+      width: calc(6 * 220px);
+    }
+    &.qtd-7 {
+      width: calc(7 * 220px);
+    }
+    &.qtd-8 {
+      width: calc(8 * 220px);
+    }
+    &.qtd-9 {
+      width: calc(9 * 220px);
+    }
+    &.qtd-10 {
+      width: calc(10 * 220px);
+    }
+  
+    .item {
+      display: flex;
+      align-items: center;
+      float: left;
+      min-width: 220px;
+  
+      .info {
+        margin-left: 15px;
+      }
+  
+      span {
+        display: block;
+      }
+  
+      .explicit {
+        display: inline-block;
+        width: 20px;
+        background-color: $grayFive;
+        color: $black;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 3px;
+      }
     }
   }
 }
@@ -75,17 +86,31 @@
   &> .splide__pagination,
   &>.splide__slider>.splide__pagination {
     max-height: 280px;
-    left: .5em;
+    left: 0;
     right: auto;
+    justify-content: flex-start;
+    padding-top: 40px;
   }
 
   .splide__pagination__page {
+    width: 10px;
+    height: 10px;
+    margin: 8px 0;
     transition: all .3s ease-in;
     &.is-active {
-      height: 16px;
+      height: 20px;
       transform: none;
       border-radius: 8px;
       background: $primaryColor;
+    }
+  }
+
+  .splide__slide {
+    opacity: .5;
+    transition: opacity .3s ease;
+
+    &.is-active {
+      opacity: 1;
     }
   }
 }
