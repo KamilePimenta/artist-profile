@@ -1,9 +1,11 @@
 <template>
-  <ul class="list albuns">
+  <ul :class="`list programs qtd-${quantity}`">
     <li class="item" v-for="program in programs" :key="program.id">
       <img :src="require(`@/assets/img/${program.image}`)"/>
-      <span class="name">{{ program.name }}</span>
-      <span class="year">{{ program.year }}</span>
+      <div class="info">
+        <span class="name">{{ program.name }}</span>
+        <span class="year">{{ program.year }}</span>
+      </div>
     </li>
   </ul>
 </template>
@@ -15,7 +17,17 @@ export default {
   data() {
     return {
       programs,
+      quantity: '',
     };
+  },
+  methods: {
+    calcWidth() {
+      const quantity = this.programs.length;
+      this.quantity = quantity;
+    }
+  },
+  created() {
+    this.calcWidth();
   },
 };
 </script>

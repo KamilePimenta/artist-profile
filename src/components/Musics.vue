@@ -1,10 +1,12 @@
 <template>
-  <ul class="list albuns">
+  <ul :class="`list musics qtd-${quantity}`">
     <li class="item" v-for="music in musics" :key="music.id">
       <img :src="require(`@/assets/img/${music.image}`)"/>
-      <span class="name">{{ music.name }}</span>
-      <span class="year">{{ music.album }}</span>
-      <span class="explicit" v-if="music.explicit"></span>
+      <div class="info">
+        <span class="name">{{ music.name }}</span>
+        <span class="year">{{ music.album }}</span>
+        <span class="explicit" v-if="music.explicit">E</span>
+      </div>
     </li>
   </ul>
 </template>
@@ -16,7 +18,17 @@ export default {
   data() {
     return {
       musics,
+      quantity: '',
     };
+  },
+  methods: {
+    calcWidth() {
+      const quantity = this.musics.length;
+      this.quantity = quantity;
+    }
+  },
+  created() {
+    this.calcWidth();
   },
 };
 </script>
