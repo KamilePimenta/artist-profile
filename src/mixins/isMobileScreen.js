@@ -26,7 +26,7 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
     this.screen;
     window.addEventListener('resize', this.screen);
     window.addEventListener('scroll', this.scrolled);
