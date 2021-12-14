@@ -1,5 +1,5 @@
 <template>
-  <div class="slider no-scrollbar">
+  <div class="slider">
     <ul :class="`list programs qtd-${quantity}`">
       <li class="item" v-for="program in programs" :key="program.id">
         <img :src="require(`@/assets/img/${program.image}`)"/>

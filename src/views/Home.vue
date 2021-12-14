@@ -1,5 +1,5 @@
 <template>
-  <main id="home" :class="`no-scrollbar ${isMobileScreen}`">
+  <main id="home" :class="isMobileScreen">
     <div :class="`principal container ${ableToChange ? ' scrolled' : ''}`">
       <div :class="`profile ${isMobileScreen}`">
         <span class="image">
@@ -66,6 +66,7 @@ import Albuns from '../components/Albuns.vue';
 import Musics from '../components/Musics.vue';
 import Programs from '../components/Programs.vue';
 import Player from '../components/Player.vue';
+
 export default {
   name: 'Home',
   components: {
@@ -91,6 +92,7 @@ export default {
         rewind: false,
         clones: 0,
       },
+      errorResponse: '',
     };
   },
 };

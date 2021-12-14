@@ -2,7 +2,7 @@ export default {
   data() {
     return {
       isMobileScreen: 'mobile',
-      ableToChange: 0,
+      ableToChange: false,
       lastDirecScroll: 'up',
       lastScrollPos: 0,
     };
@@ -26,8 +26,8 @@ export default {
     },
   },
 
-  mounted() {
-    this.screen;
+  created() {
+    this.screen();
     window.addEventListener('resize', this.screen);
     window.addEventListener('scroll', this.scrolled);
   },

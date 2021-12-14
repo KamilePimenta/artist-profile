@@ -99,6 +99,10 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
+
+const apiPath = 'https://jd-music.azurewebsites.net/api/music';
+
 export default {
   name: 'Player',
   props: {
@@ -117,7 +121,60 @@ export default {
     isMobile: {
       type: Boolean,
       required: true,
+    },
+  },
+  methods: {
+    async getMusicById(id) {
+      await axios.get(`${apiPath}/${id}`, {
+        responseType: 'arraybuffer',
+        headers: {
+          'Content-Type': 'audio/mp4',
+        },
+      }).then((response) => {
+        const { data } = response;
+        console.log({ ByID: data });
+        return data;
+      }).catch((error) => {
+        console.error(`API Music ID: ${error}`);
+        this.errorResponse = 'Desculpe-nos, não foi possível carregar a música.'
+      })
+    },
+    async getAllMusics() {
+      await axios.get(`${apiPath}/Musics`, {
+        responseType: 'arraybuffer',
+        headers: {
+          'Content-Type': 'audio/mp4',
+        },
+      }).then((response) => {
+        const { data } = response;
+        console.log({ All: data });
+        return data;
+      }).catch((error) => {
+        console.error(`API Music ID: ${error}`);
+        this.errorResponse = 'Desculpe-nos, não foi possível carregar a música.'
+      })
+    },
+
+    async playSound() {
+      try {
+        const sound = await this.getMusicById(1);
+        const mp3 = new Blob([sound], { type: 'audio/mp4' });
+        const url = URL.createObjectURL(mp3);
+        const audio = new Audio(url);
+        await audio.play();
+      } catch (e) {
+        console.log('play audio error: ', e);
+      }
+    },
+  },
+  watch: {
+    ableToChange(val) {
+      if (val) this.playSound();
     }
+  },
+  created() {
+    this.getAllMusics();
+    this.getMusicById('1');
   },
 }
 </script>

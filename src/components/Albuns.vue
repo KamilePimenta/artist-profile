@@ -1,5 +1,5 @@
 <template>
-  <div class="slider no-scrollbar">
+  <div class="slider">
     <ul :class="`list albuns qtd-${quantity}`">
       <li class="item" v-for="album in albuns" :key="album.id">
         <img :src="require(`@/assets/img/${album.image}`)"/>
